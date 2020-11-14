@@ -1,23 +1,4 @@
-import pickle
-
-def grabar(nomArchGrabar,lista):
-    try:
-        f=open(nomArchGrabar,"wb")
-        pickle.dump(lista,f)
-        f.close()
-        print("Archivo guardado.")
-    except:
-        print("Error al grabar el archivo: ", nomArchGrabar)
-
-def leer(nomArchLeer):
-    dic={}
-    try:
-        f=open(nomArchLeer,"rb")
-        dic = pickle.load(f)
-        f.close()
-    except:
-        print("El archivo indicado no existe, ingrese un nombre correcto.")
-    return dic
+from archivos import grabar,leer
 
 def GuardarDiccionario(dic):
     pregunta=input("Ingrese el nombre con el que desea guardar el archivo: ")
@@ -36,9 +17,11 @@ def cargarDiccionario():
             return {}
         else:
             print("Ingrese un valor correcto.")
-
+#! FALTA COMPARAR NUMERO DE TELEFONO CONTRA REGEX
 def ingresar(dic):
-    while True:
+        numero=input("digite el número de teléfono: ")
+        sucursal=input("Dijite la sucursal: ")
+        
         return dic
 
 def revisarUltimoCodigo(dic):
@@ -47,5 +30,5 @@ def revisarUltimoCodigo(dic):
         ultimo=i
     return ultimo
 
-dic={1:"a",2:"b",3:"c",4:"d"}
-print(revisarUltimoCodigo(dic))
+dic={1:"a",2:"b",3:"c"}
+
