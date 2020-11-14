@@ -5,11 +5,17 @@
 from archivos import grabar,leer
 import re
 def GuardarDiccionario(dic):
+    """Funcionamiento: pregunta el nombre y llama una funcion que cree el archivo.
+    Entradas: dic
+    Salidas: N/A """
     pregunta=input("Ingrese el nombre con el que desea guardar el archivo: ")
     grabar(pregunta,dic)
     return ""
 
 def cargarDiccionario():
+    """Funcionamiento: Comprueba que los datos ingresados sean correctos y carga el diccionario desde un archivo
+    Entradas: N/A
+    Salidas: diccionario """
     while True:
         pregunta=input("¿desea cargar un archivo previo? (Si/No): ")
         if pregunta.upper()=="SI":
@@ -23,6 +29,9 @@ def cargarDiccionario():
             print("Ingrese un valor correcto.")
 #! FALTA COMPARAR NUMERO DE TELEFONO CONTRA REGEX
 def ingresar(dic):
+    """Funcionamiento: valida y añade datos al diccionario
+    Entradas: dic
+    Salidas: dic """
     while True:
         codigo=revisarUltimoCodigo(dic) + 1
         estado=["Por entregar","Entregado","Devuelto"]
@@ -47,12 +56,18 @@ def ingresar(dic):
         return dic
 
 def revisarUltimoCodigo(dic):
+    """Funcionamiento: retorna la ultima llave utilizada.
+    Entradas: dic
+    Salidas: int """
     ultimo=0
     for i in dic.keys():
         ultimo=i
     return ultimo
 
 def actualizar(dic):
+    """Funcionamiento: cambia el estado del paquete a uno de los 3 disponibles, de ser necesario, modifica los dias restantes
+    Entradas: dic
+    Salidas: dic """
     while True:
         try: codigoABuscar=eval(input("digite el código del paquete: "))
         except:
@@ -77,6 +92,9 @@ def actualizar(dic):
             print("El código indicado no se encuentra en el registro.")
 
 def reporte(dic):
+    """Funcionamiento: imprime la información contenida en el diccionario
+    Entradas: dic
+    Salidas: dic """
     print("Total de paquetes registrados: ",revisarUltimoCodigo(dic))
     for i in dic.keys():
         print("Numero de paquete:",i)

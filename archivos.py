@@ -5,6 +5,9 @@
 import pickle
 
 def grabar(nomArchGrabar,lista):
+    """Funcionamiento: guarda el contenido del diccionario en un archivo.
+    Entradas: nombre del archivo (str), lista (realmente es un diccionario)
+    Salidas: N/A"""
     try:
         f=open(nomArchGrabar,"wb")
         pickle.dump(lista,f)
@@ -12,8 +15,10 @@ def grabar(nomArchGrabar,lista):
         print("Archivo guardado.")
     except:
         print("Error al grabar el archivo: ", nomArchGrabar)
-
 def leer(nomArchLeer):
+    """Funcionamiento: lee un archivo y retorna su contenido
+    Entradas: nombre del archivo(str)
+    Salidas: dic (diccionario) """
     dic={}
     try:
         f=open(nomArchLeer,"rb")

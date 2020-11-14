@@ -5,6 +5,9 @@
 from funciones import GuardarDiccionario,cargarDiccionario,ingresar,actualizar,reporte
 dic=cargarDiccionario()
 def menu():
+    """Funcionamiento: muestra el menú y maneja las opciones
+    Entradas: N/A
+    Salidas: N/A """
     global dic
     while True:
         print("""
