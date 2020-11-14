@@ -43,7 +43,7 @@ def ingresar(dic):
         preguntaEstado=input("1.Por entregar.\n2.Entregado.\n3.Devuelto.\nCual es el estado del paquete?: ")
         try:
             preguntaEstado=eval(preguntaEstado)
-            if preguntaEstado < 0 and preguntaEstado > 4:
+            if preguntaEstado <= 0 or preguntaEstado > 4:
                 print("Ingrese un valor entre 1 y 3.")
                 continue
         except:
@@ -103,3 +103,26 @@ def reporte(dic):
         print("Cantidad de días hábiles:",dic[i][2])
         print("Estado:",dic[i][3],"\n")   
     return dic
+
+def eliminar(dic):
+    numPaquete=input('Digite el número del paquete a eliminar. Recuerde que este no es su número de telefono: ')
+    while not re.match("^\d{1,}$",numPaquete):
+        print('Lo que se ingresó no es válido')
+        numPaquete=input('Digite el número del paquete a eliminar. Recuerde que este no es su número de telefono: ')
+    for key in dic:
+        if int(numPaquete)==key:
+            eleccion=input('¿Está seguro que quiere borrarlo?: ')
+            if eleccion.upper()=='SI':
+                del dic[key]
+                return dic
+            if eleccion.upper()=='NO':
+                return 'Volviendo al menú...'
+            while eleccion.upper()!='NO' or eleccion.upper()!='SI':
+                print('Opción no válida')
+                eleccion=input('¿Está seguro que quiere borrarlo?: ')
+                if eleccion.upper()=='SI':
+                    del dic[key]
+                    return dic
+                if eleccion.upper()=='NO':  
+                    return 'Volviendo al menú...'
+    return 'No se encuentra registrado el número que se indica'
