@@ -1,6 +1,6 @@
 #Elaborado por: Leandro Camacho Aguilar y Celina Madrigal Murillo
 #Fecha de Creación: 13/11/2020 6:00pm 
-#Fecha de última Modificación: 13/11/2020 8:00pm
+#Fecha de última Modificación: 13/11/2020 9:41pm
 #Versión: 3.8.5
 from archivos import grabar,leer
 import re
@@ -41,14 +41,23 @@ def ingresar(dic):
             continue
         sucursal=input("Digite la sucursal: ")
         preguntaEstado=input("1.Por entregar.\n2.Entregado.\n3.Devuelto.\nCual es el estado del paquete?: ")
-        try:
-            preguntaEstado=eval(preguntaEstado)
-            if preguntaEstado <= 0 or preguntaEstado > 4:
-                print("Ingrese un valor entre 1 y 3.")
-                continue
-        except:
+        if not re.match("^\d{1,}$", preguntaEstado):
             print("Ingrese solo números.")
-            continue
+            preguntaEstado=input("1.Por entregar.\n2.Entregado.\n3.Devuelto.\nCual es el estado del paquete?: ")
+            while not re.match("^\d{1,}$",preguntaEstado):
+                print("Ingrese solo números.")
+                preguntaEstado=input("1.Por entregar.\n2.Entregado.\n3.Devuelto.\nCual es el estado del paquete?: ")
+        preguntaEstado=int(preguntaEstado)
+        while preguntaEstado <= 0 or preguntaEstado > 3:
+            print("Ingrese solo números.")
+            preguntaEstado=input("1.Por entregar.\n2.Entregado.\n3.Devuelto.\nCual es el estado del paquete?: ")
+            if not re.match("^\d{1,}$", preguntaEstado):
+                print("Ingrese solo números.")
+                preguntaEstado=input("1.Por entregar.\n2.Entregado.\n3.Devuelto.\nCual es el estado del paquete?: ")
+            while not re.match("^\d{1,}$", preguntaEstado):
+                print("Ingrese solo números.")
+                preguntaEstado=input("1.Por entregar.\n2.Entregado.\n3.Devuelto.\nCual es el estado del paquete?: ")
+            preguntaEstado=int(preguntaEstado)
         if preguntaEstado==1:
             dic[codigo]=[numTelefono,sucursal,10,estado[preguntaEstado-1]]
         else:
@@ -77,7 +86,7 @@ def actualizar(dic):
                 preguntaEstado=input("1.Por entregar.\n2.Entregado.\n3.Devuelto.\nCual es el estado del paquete?: ")
                 try:
                     preguntaEstado=eval(preguntaEstado)
-                    if preguntaEstado < 0 and preguntaEstado > 4:
+                    if preguntaEstado <=0 or preguntaEstado > 3:
                         print("Ingrese un valor entre 1 y 3.")
                         continue
                 except:
@@ -105,6 +114,9 @@ def reporte(dic):
     return dic
 
 def eliminar(dic):
+    """Funcionamiento: elimina un paquete seleccionado por el usuario
+    Entradas: dic
+    Salidas: dic o mensaje """
     numPaquete=input('Digite el número del paquete a eliminar. Recuerde que este no es su número de telefono: ')
     while not re.match("^\d{1,}$",numPaquete):
         print('Lo que se ingresó no es válido')
