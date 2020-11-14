@@ -1,8 +1,8 @@
-#Elaborado por: Leandro Camacho Aguilar y Celina Madrigal Murillo
+    #Elaborado por: Leandro Camacho Aguilar y Celina Madrigal Murillo
 #Fecha de Creación: 13/11/2020 6:00pm 
 #Fecha de última Modificación: 13/11/2020 8:00pm
 #Versión: 3.8.5
-from funciones import GuardarDiccionario,cargarDiccionario,ingresar,actualizar,reporte
+from funciones import GuardarDiccionario,cargarDiccionario,ingresar,actualizar,reporte,eliminar
 dic=cargarDiccionario()
 def menu():
     global dic
@@ -27,7 +27,13 @@ def menu():
             dic=actualizar(dic)
             input("Se ha realizado el cambio, presione enter para continuar.")
         if opcion=="3":
-            print()
+            dicPrueba=eliminar(dic)
+            if type(dicPrueba)==str:
+                print(dicPrueba) 
+            else:
+                dic=dicPrueba
+                print('Paquete eliminado')
+            input("Presione enter para continuar.")
         if opcion=="4":
             reporte(dic)
             input("datos mostrados satisfactoriamente, presione enter para continuar.")
