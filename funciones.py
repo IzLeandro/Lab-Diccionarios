@@ -1,3 +1,7 @@
+#Elaborado por: Leandro Camacho Aguilar y Celina Madrigal Murillo
+#Fecha de Creación: 13/11/2020 6:00pm 
+#Fecha de última Modificación: 13/11/2020 8:00pm
+#Versión: 3.8.5
 from archivos import grabar,leer
 import re
 def GuardarDiccionario(dic):
